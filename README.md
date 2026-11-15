@@ -24,10 +24,12 @@ Se requiere SQL Server 2019 o superior. Los scripts integrales usan las rutas pr
 
 Conéctate a SQL Server con una cuenta que pueda crear bases de datos y ejecuta estos archivos en orden:
 
-1. `sql/instalacion_completa.sql`: crea `Proyecto_UnaMano`, las tablas originales, extensiones del marketplace, datos maestros y las tres cuentas demo. También agrega Santiago como ubicación mínima para las direcciones de esas cuentas.
+1. `sql/instalacion_completa.sql`: crea `Proyecto_UnaMano`, las tablas originales, extensiones del marketplace, datos maestros y las tres cuentas demo. También agrega Santiago como ubicación mínima para las direcciones de esas cuentas e instala las protecciones con triggers y el proceso de vencimientos.
 2. `sql/carga_demo_localidades_tareas.sql`: carga regiones, ciudades y comunas demo de Chile, además de 20 tareas. Es idempotente para localidades y tareas existentes; no elimina datos.
 
 `instalacion_completa.sql` es solo para una instalación nueva: ejecútalo una vez y no lo uses para actualizar una base existente. Si ya existe `Proyecto_UnaMano`, cancela la ejecución. Los archivos SQL numerados anteriores se conservan como scripts modulares y referencia.
+
+Si la base ya estaba instalada, aplica `sql/07_triggers_y_cursor_vencimientos.sql` para agregar los triggers, el estado `Vencida` y el procedimiento del cursor. El cursor se ejecuta manualmente en SSMS con `EXEC dbo.sp_ProcesarTareasVencidas;`; opcionalmente puede programarse con SQL Server Agent. Cierra tareas `Disponible` cuyo plazo de aprobación ya venció, rechaza sus postulaciones pendientes y registra el cambio en el historial.
 
 **Cuentas demo** (contraseña igual para cada cuenta):
 

@@ -29,6 +29,10 @@ def test_report_rejects_reversed_price_and_date_ranges():
         )
 
 
+def test_report_accepts_expired_task_state():
+    _validate_task_report_filters("Vencida", None, None, None, None)
+
+
 def test_excel_report_includes_commission_totals():
     rows = [{
         "id_tarea": 1,

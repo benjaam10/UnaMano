@@ -84,7 +84,7 @@ def admin_tasks(user=Depends(require_role("Admin"))):
     """)
 
 def _validate_task_report_filters(estado, fecha_desde, fecha_hasta, precio_minimo, precio_maximo):
-    allowed_states = {"Disponible", "Asignada", "Finalizada", "Cancelada"}
+    allowed_states = {"Disponible", "Asignada", "Finalizada", "Cancelada", "Vencida"}
     if estado and estado not in allowed_states:
         raise HTTPException(422, "Estado de tarea inválido")
     if fecha_desde and fecha_hasta and fecha_desde > fecha_hasta:

@@ -133,6 +133,7 @@ export default function AdminTaskReport() {
             <option value="Asignada">Asignada</option>
             <option value="Finalizada">Finalizada</option>
             <option value="Cancelada">Cancelada</option>
+            <option value="Vencida">Vencida</option>
           </select>
         </label>
       </div>

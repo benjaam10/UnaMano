@@ -3,8 +3,8 @@ import {Link} from 'react-router-dom';
 import {api} from '../services/api';
 
 function applicationStatus(application) {
-  return application.nombre_estado_tarea === 'Finalizada'
-    ? 'Finalizada'
+  return ['Finalizada', 'Vencida'].includes(application.nombre_estado_tarea)
+    ? application.nombre_estado_tarea
     : application.nombre_estadopostulacion;
 }
 
@@ -33,6 +33,7 @@ export default function MyApplicationsPage() {
           <option value="Pendiente">Pendiente</option>
           <option value="Aceptada">Aceptada</option>
           <option value="Finalizada">Finalizada</option>
+          <option value="Vencida">Vencida</option>
         </select>
       </label>
     </div>

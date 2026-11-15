@@ -66,7 +66,7 @@ export default function TaskDetailPage({user}) {
           <p>Plazo de aprobación: {new Date(task.fecha_limite_aprobacion).toLocaleString('es-CL')}</p>
           {user?.role === 'Estudiante' && !myApplication && <button className="primary" disabled={working} onClick={() => act(`/tasks/${id}/apply`)}>{working ? 'Enviando...' : 'Postular'}</button>}
           {user?.role === 'Estudiante' && myApplication &&
-            <p className="notice">Estado: <b>{task.nombre_estado === 'Finalizada' ? 'Finalizada' : myApplication.nombre_estadopostulacion}</b></p>}
+            <p className="notice">Estado: <b>{['Finalizada', 'Vencida'].includes(task.nombre_estado) ? task.nombre_estado : myApplication.nombre_estadopostulacion}</b></p>}
           {user?.role === 'Estudiante' && task.nombre_estado === 'Asignada' && <button className="secondary" onClick={() => act(`/tasks/${id}/complete`)}>Marcar finalizada</button>}
           {user?.role === 'Cliente' && task.nombre_estado === 'Finalizada' && !task.id_pago &&
             <button className="primary" disabled={working} onClick={() => act(`/tasks/${id}/pay`)}>
