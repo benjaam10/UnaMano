@@ -1,0 +1,1 @@
+import AuthPanel from '../components/AuthPanel';export default function AuthPage({onLogged}){return <main className="center-page"><div className="auth-wrap"><div><span className="eyebrow">UNAMANO</span><h1>Tu cuenta, tus tareas.</h1><p>Regístrate como Admin, Cliente o Estudiante.</p></div><AuthPanel onLogged={onLogged}/></div></main>}
